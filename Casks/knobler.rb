@@ -1,6 +1,6 @@
 cask "knobler" do
-  version "0.2.1"
-  sha256 "631fe8b9d2975e08cb2f620bb9ff40f8a5c5e386e269f59d5b23cc1b38c889f1"
+  version "0.2.2"
+  sha256 "367b3ed477a74795b2ee6b94e1a09a42bd6d9c2aa90ce08a134101ba71f64e55"
 
   url "https://github.com/luccas-silveira/knobler/releases/download/v#{version}/Knobler-#{version}.zip"
   name "Knobler"
@@ -21,6 +21,7 @@ cask "knobler" do
     system_command "#{appdir}/Knobler.app/Contents/MacOS/Knobler",
                    args:         ["--download-model"],
                    print_stdout: true,
+                   print_stderr: false, # esconde o ruído [INFO] do FluidAudio; progresso vai no stdout
                    must_succeed: false
   end
 
