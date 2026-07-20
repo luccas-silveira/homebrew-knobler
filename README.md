@@ -4,6 +4,7 @@ Tap do [Knobler](https://github.com/luccas-silveira/knobler) — Dynamic Island 
 
 ```bash
 brew tap luccas-silveira/knobler
+brew trust luccas-silveira/knobler    # Homebrew 6+ pede trust em taps de terceiros
 brew install --cask knobler
 ```
 
