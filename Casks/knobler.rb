@@ -1,6 +1,6 @@
 cask "knobler" do
-  version "0.1.0"
-  sha256 "678f09cd2a8741b0686ccbc0306856e9d57bae2da930305a95312ff3e66e70d2"
+  version "0.2.0"
+  sha256 "ecbfc2b3257388b0280447aa3bbc57473e84d3aa01f3301fcf96fc81e0511af3"
 
   url "https://github.com/luccas-silveira/knobler/releases/download/v#{version}/Knobler-#{version}.zip"
   name "Knobler"
@@ -16,6 +16,12 @@ cask "knobler" do
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Knobler.app"]
+    # provisiona o modelo de ditado (~600MB) já no install — 1º ditado instantâneo.
+    # best-effort: offline não quebra a instalação (o launch baixa como fallback).
+    system_command "#{appdir}/Knobler.app/Contents/MacOS/Knobler",
+                   args:         ["--download-model"],
+                   print_stdout: true,
+                   must_succeed: false
   end
 
   zap trash: [
