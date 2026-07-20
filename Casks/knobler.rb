@@ -19,6 +19,9 @@ cask "knobler" do
   end
 
   zap trash: [
+    "~/Library/Application Support/FluidAudio", # modelo Parakeet (~600MB) baixado no 1º ditado
+    "~/Library/Caches/com.zoi.knobler",
+    "~/Library/HTTPStorages/com.zoi.knobler",
     "~/Library/Preferences/com.zoi.knobler.plist",
   ]
 
