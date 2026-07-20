@@ -7,7 +7,7 @@ cask "knobler" do
   desc "Dynamic Island for the Mac notch"
   homepage "https://github.com/luccas-silveira/knobler"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Knobler.app"
 
