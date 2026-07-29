@@ -49,7 +49,9 @@ cask "knobler" do
         (única pedida na abertura: sem ela o gatilho do ditado não chega ao app)
       • Microfone, Câmera, Calendários, Rede local, Arquivos e pastas,
         Gravação de Áudio do Sistema
-    Não pede Automação, Bluetooth nem Gravação de Tela.
+      • Bluetooth — detectar a conexão dos AirPods pra mostrar a bateria
+        (pedida logo após a abertura, se o recurso estiver ligado)
+    Não pede Automação nem Gravação de Tela.
 
     Formatação de transcript com IA (opcional): brew install ollama && ollama pull gemma3:4b
   EOS
