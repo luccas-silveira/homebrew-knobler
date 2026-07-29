@@ -11,8 +11,9 @@ cask "knobler" do
 
   app "Knobler.app"
 
-  # App é ad-hoc/não-notarizado e --no-quarantine foi removida no Homebrew 5.1;
-  # remover a quarantine aqui, senão o Gatekeeper bloqueia o 1º launch.
+  # App é self-signed (cert próprio, estável entre versões) e não-notarizado, e a
+  # --no-quarantine foi removida no Homebrew 5.1; remover a quarantine aqui, senão
+  # o Gatekeeper bloqueia o 1º launch. Some quando houver Developer ID + notarização.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Knobler.app"]
@@ -33,15 +34,22 @@ cask "knobler" do
   ]
 
   caveats <<~EOS
-    O Knobler é assinado ad-hoc (sem Developer ID/notarização). O Homebrew remove a
-    quarentena automaticamente. Se algum dia o macOS ainda bloquear (ex.: app
-    re-baixado por fora do brew), rode:
+    ASSINATURA
+    O Knobler é assinado com um certificado próprio e NÃO é notarizado pela Apple.
+    O macOS não consegue confirmar quem publicou o app, então bloquearia o primeiro
+    launch; este cask removeu a marca de quarentena no install para contornar isso.
+    Se preferir não depender de um instalador para esse passo, use o zip do
+    Releases e remova a marca você mesmo, depois de conferir o que está instalando:
       xattr -dr com.apple.quarantine "#{appdir}/Knobler.app"
 
-    Conceda em Ajustes do Sistema → Privacidade e Segurança:
-      • Acessibilidade (teclas de ditado + notificações no notch)
-      • Gravação de Áudio do Sistema (visualizador)
-    Automação (Spotify/Music), Calendário, Mic e Bluetooth são pedidos em runtime.
+    PERMISSÕES
+    Pedidas no primeiro uso de cada recurso, e recusar só desliga aquele recurso.
+    O estado de todas fica em Ajustes → Permissões.
+      • Acessibilidade — teclas de volume/brilho, gatilho do ditado, colar o texto
+        (única pedida na abertura: sem ela o gatilho do ditado não chega ao app)
+      • Microfone, Câmera, Calendários, Rede local, Arquivos e pastas,
+        Gravação de Áudio do Sistema
+    Não pede Automação, Bluetooth nem Gravação de Tela.
 
     Formatação de transcript com IA (opcional): brew install ollama && ollama pull gemma3:4b
   EOS
