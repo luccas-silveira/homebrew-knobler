@@ -1,6 +1,6 @@
 cask "knobler" do
-  version "0.17.0"
-  sha256 "0a15b357b44a30b0fc38f6457674a200e5ace336eecac504f2ee76c37b17e195"
+  version "0.18.0"
+  sha256 "ae8b8ca5c12bb0db5a618f44af47410b1819dfb6d556a7123b14e3c0956daefa"
 
   url "https://github.com/luccas-silveira/knobler/releases/download/v#{version}/Knobler-#{version}.zip"
   name "Knobler"
